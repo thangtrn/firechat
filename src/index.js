@@ -7,7 +7,7 @@ import AuthProvider from './context/AuthProvider'
 import ChatProvider from './context/ChatProvider';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
         <AuthProvider>
             <ChatProvider>
                 <App />

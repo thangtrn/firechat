@@ -13,7 +13,7 @@ function App() {
                 <Chat/>
               </PrivateRoute>
             } />
-            <Route path='/login' index element={<Login/>}/>
+            <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
         </Routes>
     </>
