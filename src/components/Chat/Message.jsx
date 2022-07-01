@@ -1,8 +1,26 @@
 import React from "react";
+import { formatRelative } from "date-fns/esm";
 import { useAuth } from "../../context/AuthProvider";
 
 function Message({ data }) {
     const { user } = useAuth();
+
+    function formatDate(seconds) {
+        let formattedDate = "";
+
+        if (seconds) {
+            formattedDate = formatRelative(
+                new Date(seconds * 1000),
+                new Date()
+            );
+
+            formattedDate =
+                formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+        }
+
+        return formattedDate;
+    }
+
     return (
         <div
             className={`message-item ${
@@ -17,7 +35,9 @@ function Message({ data }) {
                     />
                 </span>
                 <span className="author">{data.name}</span>
-                <span className="date">Today at 5:33 PM</span>
+                <span className="date">
+                    {formatDate(data?.createAt?.seconds)}
+                </span>
             </div>
             <div className="message-text">{data.content}</div>
         </div>
